@@ -2,6 +2,8 @@ class foreman::params {
 
 # Basic configurations
   $foreman_url  = "http://${::fqdn}"
+  $foreman_user = "admin"
+  $foreman_pass = "changeme"
   # Should foreman act as an external node classifier (manage puppet class
   # assignments)
   $enc          = true

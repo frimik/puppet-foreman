@@ -1,0 +1,6 @@
+--- 
+:url: "<%= scope.lookupvar('foreman::params::foreman_url')%>",
+:puppetdir: "<%= scope.lookupvar('foreman::params::puppet_home')%>",
+:facts: <%= scope.lookupvar('foreman::params::facts')%>,
+:storeconfigs: <%= scope.lookupvar('foreman::params::storeconfigs')%>,
+:timeout: <%= scope.lookupvar('foreman::params::timeout')%>,

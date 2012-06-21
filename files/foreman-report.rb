@@ -2,21 +2,29 @@
 # add this report in your puppetmaster reports - e.g, in your puppet.conf add:
 # reports=log, foreman # (or any other reports you want)
 
-# URL of your Foreman installation
-$foreman_url='<%= scope.lookupvar("foreman::params::foreman_url") %>'
-
 require 'puppet'
 require 'net/http'
 require 'net/https'
 require 'uri'
+require 'yaml'
+
+
+SETTINGS = YAML.load_file("/etc/puppet/foreman.yml")
 
 Puppet::Reports.register_report(:foreman) do
     Puppet.settings.use(:reporting)
     desc "Sends reports directly to Foreman"
 
+    def url
+      unless SETTINGS[:url]
+        raise Puppet::Error, "Must provide URL - please edit configuration file: /etc/puppet/foreman.yml"
+      end
+      SETTINGS[:url]
+    end
+
     def process
       begin
-        uri = URI.parse($foreman_url)
+        uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
         if uri.scheme == 'https' then
           http.use_ssl = true

@@ -1,17 +1,11 @@
 #! /usr/bin/env ruby
 
-SETTINGS = {
-  :url          => "<%= scope.lookupvar('foreman::params::foreman_url')%>",
-  :puppetdir    => "<%= scope.lookupvar('foreman::params::puppet_home')%>",
-  :facts        => <%= scope.lookupvar('foreman::params::facts')%>,
-  :storeconfigs => <%= scope.lookupvar('foreman::params::storeconfigs')%>,
-  :timeout      => 3,
-}
+require 'yaml'
 
-### Do not edit below this line
+SETTINGS = YAML.load_file("/etc/puppet/foreman.yml")
 
 def url
-  SETTINGS[:url] || raise("Must provide URL - please edit file")
+  SETTINGS[:url] || raise("Must provide URL - please edit configuration file: /etc/puppet/foreman.yml")
 end
 
 def certname
@@ -19,7 +13,7 @@ def certname
 end
 
 def puppetdir
-  SETTINGS[:puppetdir] || raise("Must provide puppet base directory - please edit file")
+  SETTINGS[:puppetdir] || raise("Must provide puppet base directory - please edit configuration file: /etc/puppet/foreman.yml")
 end
 
 def stat_file
