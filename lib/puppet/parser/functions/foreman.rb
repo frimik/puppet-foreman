@@ -20,6 +20,9 @@ require "net/http"
 require "net/https"
 require "uri"
 require "timeout"
+require "yaml"
+
+SETTINGS = YAML.load_file("/etc/puppet/foreman.yml")
 
 module Puppet::Parser::Functions
   newfunction(:foreman, :type => :rvalue) do |args|
@@ -29,9 +32,9 @@ module Puppet::Parser::Functions
     raise Puppet::ParseError, "Foreman: Invalid item to search on: #{item}, must be one of #{searchable_items.join(", ")}." unless searchable_items.include?(item)
 
     # URL to query
-    foreman_url  = "https://foreman"
-    foreman_user = "admin"
-    foreman_pass = "changeme"
+    foreman_url  = SETTINGS[:url]
+    foreman_user = SETTINGS[:user]
+    foreman_pass = SETTINGS[:password]
 
     uri = URI.parse(foreman_url)
     http = Net::HTTP.new(uri.host, uri.port)

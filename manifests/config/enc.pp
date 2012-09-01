@@ -8,10 +8,10 @@ class foreman::config::enc (
   File { require => Class['::puppet::server::install'] }
 
   file { '/etc/puppet/node.rb':
-    content => template('foreman/external_node.rb.erb'),
-    mode    => '0550',
-    owner   => 'puppet',
-    group   => 'puppet',
+    source => "puppet:///${module_name}/external_node.rb",
+    mode   => '0550',
+    owner  => 'puppet',
+    group  => 'puppet',
   }
   file { "${puppet_home}/yaml":
     ensure  => directory,

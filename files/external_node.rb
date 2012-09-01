@@ -1,17 +1,11 @@
 #! /usr/bin/env ruby
 
-SETTINGS = {
-  :url          => "<%= @foreman_url %>",
-  :puppetdir    => "<%= @puppet_home %>",
-  :facts        => <%= @facts %>,
-  :storeconfigs => <%= @storeconfigs %>,
-  :timeout      => 3,
-}
+require 'yaml'
 
-### Do not edit below this line
+SETTINGS = YAML.load_file("/etc/puppet/foreman.yml")
 
 def url
-  SETTINGS[:url] || raise("Must provide URL - please edit file")
+  SETTINGS[:url] || raise("Must provide URL - please edit configuration file: /etc/puppet/foreman.yml")
 end
 
 def certname
@@ -19,7 +13,7 @@ def certname
 end
 
 def puppetdir
-  SETTINGS[:puppetdir] || raise("Must provide puppet base directory - please edit file")
+  SETTINGS[:puppetdir] || raise("Must provide puppet base directory - please edit configuration file: /etc/puppet/foreman.yml")
 end
 
 def stat_file
@@ -85,7 +79,7 @@ begin
   # send facts to Foreman - optional uncomment 'upload_facts' to activate.
   # if you use this option below, make sure that you don't send facts to foreman via the rake task or push facts alternatives.
   #
-  if ( SETTINGS[:facts] ) and not ( SETTINGS[:storeconfig] )
+  if ( SETTINGS[:facts] ) and not ( SETTINGS[:storeconfigs] )
     upload_facts
   end
   #

@@ -2,6 +2,8 @@ class foreman::params {
 
 # Basic configurations
   $foreman_url  = "http://${::fqdn}"
+  $foreman_user = "admin"
+  $foreman_password = "changeme"
   # Should foreman act as an external node classifier (manage puppet class
   # assignments)
   $enc          = true
@@ -33,6 +35,12 @@ class foreman::params {
   $environment = 'production'
   $use_sqlite  = true
 
+  # Package source can be one of 'stable', 'testing', or 'nightly'
+  $package_source = 'stable'
+
+  # Timeout for Foreman remote calls (ENC script).
+  $foreman_timeout = 3
+
   # OS specific paths
   case $::operatingsystem {
     redhat,centos,fedora,Scientific: {
@@ -55,4 +63,6 @@ class foreman::params {
     }
   }
   $puppet_home = '/var/lib/puppet'
+  $puppet_user = 'puppet'
+  $puppet_group = 'puppet'
 }

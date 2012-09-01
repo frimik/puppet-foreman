@@ -1,3 +1,42 @@
+# = Class: foreman
+#
+# Install Foreman and dependencies
+#
+# === Parameters
+#
+#  [*foreman_url*]      - Foreman URL (http://$::fqdn)
+#  [*enc*]              - Foreman is external node classifier (true)
+#  [*reports*]          - Foreman receives reports from Puppet (true)
+#  [*facts*]            - Foreman receives facts from Puppet (true)
+#  [*storeconfigs*]     - Deprecated: Whether storeconfigs is used (false)
+#  [*unattended*]       - Foreman manages host provisioning (true)
+#  [*authentication*]   - Enable users authentication in Foreman (false)
+#  [*passenger*]        - Run Foreman under Apache and Passenger (true)
+#  [*ssl*]              - Force SSL (note: requires passenger) (true)
+#
+# ==== Advanced parameters
+#  See foreman::params for details.
+#
+#  [*custom_repo*]
+#  [*use_testing*]
+#  [*use_sqlite*]
+#  [*railspath*]
+#  [*app_root*]
+#  [*user*]
+#  [*environment*]
+#  [*package_source*]
+#  [*puppet_basedir*]
+#  [*apache_conf_dir*]
+#  [*puppet_home*]
+#
+# === Examples
+#
+# Install Foreman with custom URL
+#
+#  class{'foreman':
+#    $foreman_url      => 'http://foreman.example.com/',
+#  }
+#  
 class foreman (
   $foreman_url     = $foreman::params::foreman_url,
   $enc             = $foreman::params::enc,
