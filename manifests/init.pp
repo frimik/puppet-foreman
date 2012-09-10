@@ -1,14 +1,11 @@
-# = Class: foreman
+# == Class: foreman
 #
 # Install Foreman and dependencies
 #
 # === Parameters
 #
 #  [*foreman_url*]      - Foreman URL (http://$::fqdn)
-#  [*enc*]              - Foreman is external node classifier (true)
 #  [*reports*]          - Foreman receives reports from Puppet (true)
-#  [*facts*]            - Foreman receives facts from Puppet (true)
-#  [*storeconfigs*]     - Deprecated: Whether storeconfigs is used (false)
 #  [*unattended*]       - Foreman manages host provisioning (true)
 #  [*authentication*]   - Enable users authentication in Foreman (false)
 #  [*passenger*]        - Run Foreman under Apache and Passenger (true)
