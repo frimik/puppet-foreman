@@ -1,8 +1,8 @@
 class foreman::params {
 
 # Basic configurations
-  $foreman_url  = "http://${::fqdn}"
-  $foreman_user = "admin"
+  $foreman_url      = "http://${::fqdn}"
+  $foreman_user     = "admin"
   $foreman_password = "changeme"
   # Should foreman act as an external node classifier (manage puppet class
   # assignments)
@@ -62,7 +62,7 @@ class foreman::params {
       $apache_conf_dir = '/etc/apache2/conf.d/foreman.conf'
     }
   }
-  $puppet_home = '/var/lib/puppet'
-  $puppet_user = 'puppet'
+  $puppet_home  = '/var/lib/puppet'
+  $puppet_user  = 'puppet'
   $puppet_group = 'puppet'
 }

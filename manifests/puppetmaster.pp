@@ -1,18 +1,18 @@
 # This class includes the necessary scripts for Foreman on the puppetmaster and
 # is intented to be added to your puppetmaster
 class foreman::puppetmaster (
-  $foreman_url    = $foreman::params::foreman_url,
-  $foreman_user   = $foreman::params::foreman_user,
+  $foreman_url      = $foreman::params::foreman_url,
+  $foreman_user     = $foreman::params::foreman_user,
   $foreman_password = $foreman::params::foreman_password,
-  $reports        = $foreman::params::reports,
-  $enc            = $foreman::params::enc,
-  $foreman_timeout = $foreman::params::foreman_timeout,
-  $puppet_user    = $foreman::params::puppet_user,
-  $puppet_group   = $foreman::params::puppet_group,
-  $facts          = $foreman::params::facts,
-  $storeconfigs   = $foreman::params::storeconfigs,
-  $puppet_home    = $foreman::params::puppet_home,
-  $puppet_basedir = $foreman::params::puppet_basedir
+  $reports          = $foreman::params::reports,
+  $enc              = $foreman::params::enc,
+  $foreman_timeout  = $foreman::params::foreman_timeout,
+  $puppet_user      = $foreman::params::puppet_user,
+  $puppet_group     = $foreman::params::puppet_group,
+  $facts            = $foreman::params::facts,
+  $storeconfigs     = $foreman::params::storeconfigs,
+  $puppet_home      = $foreman::params::puppet_home,
+  $puppet_basedir   = $foreman::params::puppet_basedir
 ) inherits foreman::params {
 
   if $reports {   # foreman reporter
